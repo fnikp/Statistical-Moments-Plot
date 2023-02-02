@@ -1,22 +1,26 @@
 # Statistical Moments Plotter
 
-This repository contains a python function `moments_plot` that plots the statistical moments of a given data for specified orders.
+This repository contains a python function `moments_plot` that plots the integrand of statistical moments of a given data for specified orders.
 
 ## Statistical Moments
 
-Statistical moment is a value computed from the data set that describes its distributional properties, such as central tendency, spread or skewness. For a set of data points $\{x_1, x_2, ..., x_n\}$, the $n^{th}$ statistical moment is defined as:
+Statistical moment is a value computed from the data set that describes its distributional properties, such as central tendency, spread or skewness. For a set of data points ${x_1, x_2, ..., x_n}$, the $n^{th}$ statistical moment is defined as:
 
-$$E[(x - \bar{x})^n] = \frac{\Sigma (x_i - \bar{x})^n}{n}$$
+$$E[(x - \bar{x})^n] = \frac{\Sigma (x_i - \bar{x})^n}{n}$$ 
 
-There are four commonly used statistical moments:
+The first moment is simply the ***mean***, the second moment is the ***variance***, and higher moments, known as central moments, capture more complex features of the distribution. These central moments can provide insights into the skewness and kurtosis of the distribution, helping to describe the shape of the data distribution shape beyond just the mean and variance. 
 
-1. ***Mean (1st order moment)***: The mean of a dataset is the sum of all the data points divided by the total number of data points. It represents the central tendency of a dataset and is also known as the average.
+In terms of a probability density function, the $n^{th}$ central moment can be expressed as an integral:
 
-2. ***Variance (2nd order central moment)***: The variance of a dataset is the average of the squared differences from the mean. It measures the spread of the dataset and is used to quantify the dispersion of the data around the mean.
+$$E[(x - \bar{x})^n] = \int{p(x)(x - \bar{x})^n}$$
 
-3. ***Skewness (3rd order standardized moment)***: Skewness is a measure of the asymmetry of a dataset about its mean. A positive skewness indicates that there are more data points on the right side of the mean, while a negative skewness indicates more data points on the left side of the mean.
+This function is designed to plot the integrand of the $n^{th}$ central moment, $p(x)(x - \bar{x})^n$. 
 
-4. ***Kurtosis (4th order standardized moment)***: Kurtosis is a measure of the "peakedness" of a dataset. A high kurtosis indicates that the dataset has a sharp peak and heavy tails, while a low kurtosis indicates a flatter distribution.
+Depending on the size and distribution of the data, there may exist a critical order such that the tails of the plots for orders greater than this critical order diverge. This divergence indicates that the moments of higher orders from this data are not valid, as the tails of the distribution are not well-behaved and the moment calculations become unstable.
+
+It is important to keep in mind that the validity of statistical moments depends on the data, and that in some cases, even the second moment (variance) may not be a meaningful measurement.
+
+
 
 ## Requirements
 

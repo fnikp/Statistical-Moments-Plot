@@ -13,7 +13,7 @@ import seaborn as sns
 
 @mpl.rc_context({'axes.labelsize': 15, })
 def moments_plot(data, order, bins=300, row='var', column='order', palette='flare', **kwargs):
-    """ This function plots the statistical moments of the given orders for a given data.
+    """ This function plots the integrand of the statistical moments of the given orders for a given data.
 
     :param data: the array of time-series, each column corresponds to a time-serie
     :type data: nd-array of shape (n, dims)
