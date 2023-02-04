@@ -20,14 +20,22 @@ Depending on the size and distribution of the data, there may exist a critical o
 
 It is important to keep in mind that the validity of statistical moments depends on the data, and that in some cases, even the second moment (variance) may not be a meaningful measurement.
 
+### **Error Estimation**
 
+The total error of the calculated variable $p(x)x^n$ is given by:
+
+$$\Delta (p(x)x^n) = (p(x)x^n) \times \bigg[\frac{\Delta p}{p} + \frac{2 \Delta x}{x}\bigg]$$
+
+where $p$ is the probability of the bin  and $x$ is the center of the bin with bin length $\Delta x$.
+
+For each bin, the error in the probability $\Delta p$ was was estimated using the binomial distribution from the formula $\sqrt{Np(1-p)}$, where N is the total number of data points and $p = \frac{n}{N}$ is the probability for the bin with $n$ data points. 
 
 ## Requirements
 
 * numpy 1.20.3
 * pandas 1.3.4
 * matplotlib 3.6.2
-* seaborn 0.11.2
+* seaborn 0.12.2
 
 ## Documentation
 
@@ -59,7 +67,7 @@ It is important to keep in mind that the validity of statistical moments depends
 
 ### Return
 
-**return**: `sns.relplot`
+**return**: seaborn facetgrid
 
 ## How to use
 
@@ -75,7 +83,7 @@ moments_plot(<data>, <order>, bins=300, row='var', column='order', palette='flar
 from Moments_Plot import moments_plot
 
 x = np.random.normal(size=(10 ** 6, 2))
-moments_plot(x, order=[1, 2, 3, 4], row='var', column='order', bins=300, palette='flare')
+g = moments_plot(x, order=[1, 2, 3, 4], row='var', column='order', bins=100, palette='flare')
 ```
 ![example plot](img/example_plot.png)
 
@@ -85,24 +93,4 @@ If you would like to contribute to this repository, feel free to submit a pull r
 
 ## License
 
-The MIT License (MIT)
-
-Copyright (c) [2023] [Fatemeh Nikpanjeh]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md) file for details.
